@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voltage OS Flashing Guide for veux/peux</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-b from-slate-900 to-black text-slate-300">
+
+    <!-- Header -->
+    <header class="bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50 border-b border-slate-700">
+        <nav class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl text-white">VoltageOS Guide (veux/peux)</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#section-recovery" class="text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Recovery</a>
+                        <a href="#section-firmware" class="text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Firmware</a>
+                        <a href="#section-rom" class="text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">ROM</a>
+                        <a href="#section-update" class="text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Update</a>
+                        <a href="#section-kernel" class="text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Kernel</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Voltage OS Flashing Guide for veux/peux</h1>
+            <p class="mt-4 text-lg text-slate-400">Your complete guide to installing Voltage OS on your Xiaomi Redmi Note 11 Pro / 11 Pro+ / 11E Pro / POCO X4 Pro (veux/peux).</p>
+        </div>
+
+        <!-- Warning! -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-semibold text-white border-l-4 border-yellow-400 pl-4 mb-6">Warning!</h2>
+            <div class="font-mono whitespace-pre-wrap bg-slate-900 border border-yellow-500/50 rounded-lg p-4 text-sm text-yellow-300">/*
+ * Your <span class="font-bold text-yellow-400 animate-pulse">warranty</span> is now void.
+ *
+ * Most custom ROMs are released stable and safe to use…
+ * but if you decide to play mad scientist, mess something up, and
+ * end up corrupting your SD card, turning your phone into a fancy paperweight,
+ * or bricking it beyond recognition—don’t blame me.
+ * I warned you. In fact, I’ll probably just laugh. Loudly. 😂
+ */</div>
+        </div>
+
+        <!-- Instructions Container -->
+        <div class="space-y-12">
+
+            <!-- Section 1: Flashing Recovery and DTBO -->
+            <section id="section-recovery">
+                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing Recovery and DTBO</h2>
+                <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="font-semibold text-white text-lg mb-4">Downloads:</h3>
+                    <ul class="list-disc list-inside space-y-3 mb-6">
+                        <li><a href="https://sourceforge.net/projects/voltage-os/files/veux/recovery/" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">boot & vendor_boot images</a></li>
+                        <li><a href="https://t.me/frosty_builds/50818" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">dtbo.img</a> (For Android 15+ builds)</li>
+                        <li><a href="https://t.me/frosty_builds/51604" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">dtbo_a14.img</a> (For Android 14 builds, e.g., VoltageOS v3.7-EOL)</li>
+                    </ul>
+
+                    <h3 class="font-semibold text-white text-lg mt-8 mb-4">Steps:</h3>
+                    <p class="mb-4">1. Reboot to fastboot mode by holding <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Volume Down</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd> until the fastboot logo appears.</p>
+                    <p class="mb-4">2. Connect your phone to your PC and run the following commands:</p>
+
+                    <div class="space-y-4">
+                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative"><code class="text-slate-300">fastboot flash boot_a voltage-5.1-veux-20250925-0429-OFFICIAL-boot.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative"><code class="text-slate-300">fastboot flash boot_b voltage-5.1-veux-20250925-0429-OFFICIAL-boot.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative"><code class="text-slate-300">fastboot flash vendor_boot voltage-5.1-veux-20250925-0429-OFFICIAL-vendor_boot.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative"><code class="text-slate-300">fastboot flash dtbo dtbo.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                    </div>
+
+                    <p class="mt-6">3. Reboot to recovery mode by holding <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Volume Up</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd> until the recovery screen appears.</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Flashing Firmware -->
+            <section id="section-firmware">
+                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing Firmware</h2>
+                <p class="mb-4">Download the latest regional firmware from <a href="https://t.me/sweaterinsack/3/5" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">here</a>.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg md:border-r md:border-slate-700">
+                        <h4 class="font-semibold text-white mb-2">Method 1: ADB Sideload</h4>
+                        <ol class="list-decimal list-inside space-y-2">
+                            <li>In recovery, select <span class="font-semibold text-slate-100">Apply Update</span>.</li>
+                            <li>Select <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
+                            <li>Connect phone to PC and run this command:</li>
+                            <pre class="bg-slate-900 rounded-md p-4 text-sm relative mt-2"><code class="text-slate-300">adb sideload firmware.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                        </ol>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
+                        <h4 class="font-semibold text-white mb-2">Method 2: SD Card / OTG</h4>
+                         <ol class="list-decimal list-inside space-y-2">
+                            <li>In recovery, select <span class="font-semibold text-slate-100">Apply Update</span>.</li>
+                            <li>Select <span class="font-semibold text-slate-100">Choose from sdcard</span>.</li>
+                            <li>Navigate to and select your <span class="font-mono">firmware.zip</span> file.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Flashing ROM -->
+            <section id="section-rom">
+                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing ROM</h2>
+                <div class="space-y-8">
+                    <!-- Clean Flash (Vanilla) -->
+                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-4">1. Clean Flash (Vanilla)</h3>
+                        <ol class="list-decimal list-inside space-y-2">
+                            <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
+                            <li>On your PC, run:</li>
+                            <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload rom.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                            <li>Confirm 'Yes' on the prompt after sideloading.</li>
+                            <li>Select <span class="font-semibold text-slate-100">Factory Reset</span>.</li>
+                            <li>Select <span class="font-semibold text-slate-100">Format Data/Factory Reset</span>.</li>
+                            <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
+                        </ol>
+                    </div>
+
+                    <!-- Clean Flash (Sandbox GApps) -->
+                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-4">2. Clean Flash (Sandbox GApps)</h3>
+                        <p class="mb-4">Follow steps 1-6 from the <span class="font-semibold text-slate-100">Clean Flash (Vanilla)</span> method above.</p>
+                        <ol class="list-decimal list-inside space-y-2" start="7">
+                            <li>After rebooting, download and install the <a href="https://github.com/GrapheneOS/AppStore/releases" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">GrapheneOS App Store</a>.</li>
+                            <li>Open the app and install "Google Play services", "Google Services Framework" and "Google Play Store".</li>
+                        </ol>
+                        <div class="mt-4 flex flex-col md:flex-row gap-4 items-center bg-slate-700/50 p-4 rounded-lg">
+                             <img src="https://raw.githubusercontent.com/Karan-Frost/images/refs/heads/main/IMG_20241209_143433_631.jpg" alt="GrapheneOS App Store screenshot" class="rounded-md w-full md:w-1/3 object-cover">
+                             <div class="text-sm">
+                                 <p class="mb-2">For more information on Sandboxed Google Play, read the <a href="https://grapheneos.org/usage#sandboxed-google-play" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">official documentation</a>.</p>
+                                 <p>For potential fixes and workarounds, check <a href="https://t.me/voltageos/122664" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">this post</a>.</p>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Clean Flash (Normal GApps) -->
+                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-4">3. Clean Flash (Normal GApps)</h3>
+                        <ol class="list-decimal list-inside space-y-2">
+                             <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
+                            <li>Sideload the ROM zip:</li>
+                            <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload rom.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                            <li>Confirm 'Yes' on the prompt.</li>
+                            <li><span class="font-semibold text-slate-100">DO NOT REBOOT.</span> Go back and select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span> again.</li>
+                            <li>Sideload your GApps package:</li>
+                            <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload gapps.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                            <li>Select <span class="font-semibold text-slate-100">Advanced</span> &rarr; <span class="font-semibold text-slate-100">Reboot to Recovery</span>.</li>
+                            <li>Once back in recovery, select <span class="font-semibold text-slate-100">Factory Reset</span>.</li>
+                            <li>Select <span class="font-semibold text-slate-100">Format Data/Factory Reset</span>.</li>
+                            <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 4: Updating ROM -->
+            <section id="section-update">
+                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Updating ROM</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                     <div class="bg-slate-800 p-6 rounded-lg shadow-lg md:border-r md:border-slate-700">
+                        <h3 class="text-xl font-bold text-white mb-4">1. Dirty Flash</h3>
+                        <ol class="list-decimal list-inside space-y-2">
+                            <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
+                            <li>Sideload the new ROM zip:</li>
+                            <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload rom.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                            <li>Confirm 'Yes' on the prompt.</li>
+                            <li>If you did not flash GApps previously, select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
+                        </ol>
+                        <div class="mt-4 border-t border-slate-700 pt-4">
+                            <p class="font-semibold text-yellow-300">If you flashed GApps previously:</p>
+                            <ol class="list-decimal list-inside space-y-2 mt-2">
+                                <li><span class="font-bold">DO NOT REBOOT.</span> Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span> again.</li>
+                                <li>Sideload the GApps zip:</li>
+                                 <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload gapps.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                                <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
+                            </ol>
+                        </div>
+                    </div>
+                     <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-white mb-4">2. Through OTA</h3>
+                         <ol class="list-decimal list-inside space-y-2">
+                             <li>Navigate to <span class="font-semibold text-slate-100">Settings</span> &rarr; <span class="font-semibold text-slate-100">System</span> &rarr; <span class="font-semibold text-slate-100">System updates</span>.</li>
+                             <li>Download the latest available build.</li>
+                             <li>Tap <span class="font-semibold text-slate-100">Reboot</span> in the updater once the download is complete.</li>
+                             <li>The device will automatically update and reboot.</li>
+                         </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Flashing different kernel -->
+            <section id="section-kernel">
+                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing a Different Kernel</h2>
+                <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
+                    <p class="mb-4 text-yellow-300 font-medium">Note: These instructions are for Android 16 builds.</p>
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li>Download the required `vendor_boot.img` from <a href="https://sourceforge.net/projects/voltage-os-veux-peux/files/kernel-flash/voltage-5.1-kernel-flash-vendor_boot.img/download" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">here</a>.</li>
+                        <li>Reboot to fastboot mode (<kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Vol Down</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd>).</li>
+                        <li>Flash the downloaded vendor_boot:</li>
+                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative my-2"><code class="text-slate-300">fastboot flash vendor_boot voltage-5.1-kernel-flash-vendor_boot.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                        <li>Reboot to recovery (<kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Vol Up</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd>).</li>
+                        <li>Flash your desired kernel zip file via recovery (e.g., ADB Sideload or SD Card).</li>
+                        <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
+                    </ol>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 mt-12 border-t border-slate-800">
+        <div class="max-w-5xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-slate-400">
+            <p>Found a mistake or want to suggest improvements? Feel free to open a <a href="https://github.com/Karan-Frost/flashing-guide-veux/pulls" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold underline">Pull Request</a>!</p>
+            <p>For any queries, ask in the <a href="https://t.me/frosty_builds" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold underline">Support Group</a>.</p>
+            <p>Crafted by Frost | 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
