@@ -56,15 +56,13 @@
         <!-- Instructions Container -->
         <div class="space-y-12">
 
-            <!-- Section 1: Flashing Recovery and DTBO -->
+            <!-- Section 1: Flashing Recovery (Initial Install ZIP) -->
             <section id="section-recovery">
-                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing Recovery and DTBO</h2>
+                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing Recovery (Initial Install ZIP)</h2>
                 <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                    <h3 class="font-semibold text-white text-lg mb-4">Downloads:</h3>
+                    <h3 class="font-semibold text-white text-lg mb-4">Download:</h3>
                     <ul class="list-disc list-inside space-y-3 mb-6">
-                        <li><a href="https://sourceforge.net/projects/voltage-os/files/veux/recovery/" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">boot & vendor_boot images</a></li>
-                        <li><a href="https://t.me/frosty_builds/50818" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">dtbo.img</a> (For Android 15+ builds)</li>
-                        <li><a href="https://t.me/frosty_builds/51604" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">dtbo_a14.img</a> (For Android 14 builds, e.g., VoltageOS v3.7-EOL)</li>
+                        <li><a href="https://sourceforge.net/projects/voltage-os/files/veux/recovery/" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">Initial Install ZIP</a></li>
                     </ul>
 
                     <h3 class="font-semibold text-white text-lg mt-8 mb-4">Steps:</h3>
@@ -72,10 +70,8 @@
                     <p class="mb-4">2. Connect your phone to your PC and run the following commands:</p>
 
                     <div class="space-y-4">
-                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative"><code class="text-slate-300">fastboot flash boot_a voltage-5.1-veux-20250925-0429-OFFICIAL-boot.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative"><code class="text-slate-300">fastboot flash boot_b voltage-5.1-veux-20250925-0429-OFFICIAL-boot.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative"><code class="text-slate-300">fastboot flash vendor_boot voltage-5.1-veux-20250925-0429-OFFICIAL-vendor_boot.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative"><code class="text-slate-300">fastboot flash dtbo dtbo.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                        <pre class="bg-slate-900 rounded-md p-4 text-sm relative mt-2"><code class="text-slate-300">fastboot reboot fastboot</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative"><code class="text-slate-300">fastboot --skip-reboot update voltage-5.2-veux-20251013-1215-OFFICIAL-initial-install.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
                     </div>
 
                     <p class="mt-6">3. Reboot to recovery mode by holding <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Volume Up</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd> until the recovery screen appears.</p>
@@ -131,7 +127,7 @@
                         <p class="mb-4">Follow steps 1-6 from the <span class="font-semibold text-slate-100">Clean Flash (Vanilla)</span> method above.</p>
                         <ol class="list-decimal list-inside space-y-2" start="7">
                             <li>After rebooting, download and install the <a href="https://github.com/GrapheneOS/AppStore/releases" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">GrapheneOS App Store</a>.</li>
-                            <li>Open the app and install "Google Play services", "Google Services Framework" and "Google Play Store".</li>
+                            <li>Open the app and install Google Play services, Google Services Framework and Google Play Store.</li>
                         </ol>
                         <div class="mt-4 flex flex-col md:flex-row gap-4 items-center bg-slate-700/50 p-4 rounded-lg">
                              <img src="https://raw.githubusercontent.com/Karan-Frost/images/refs/heads/main/IMG_20241209_143433_631.jpg" alt="GrapheneOS App Store screenshot" class="rounded-md w-full md:w-1/3 object-cover">
@@ -203,10 +199,10 @@
                 <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
                     <p class="mb-4 text-yellow-300 font-medium">Note: These instructions are for Android 16 builds.</p>
                     <ol class="list-decimal list-inside space-y-2">
-                        <li>Download the required `vendor_boot.img` from <a href="https://sourceforge.net/projects/voltage-os-veux-peux/files/kernel-flash/voltage-5.1-kernel-flash-vendor_boot.img/download" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">here</a>.</li>
+                        <li>Download the required <span class="font-semibold text-slate-100">vendor_boot.img</span> from <a href="https://sourceforge.net/projects/voltage-os-veux-peux/files/kernel-flash/voltage-5.2-kernel-flash-vendor_boot.img/download" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">here</a>.</li>
                         <li>Reboot to fastboot mode (<kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Vol Down</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd>).</li>
                         <li>Flash the downloaded vendor_boot:</li>
-                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative my-2"><code class="text-slate-300">fastboot flash vendor_boot voltage-5.1-kernel-flash-vendor_boot.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative my-2"><code class="text-slate-300">fastboot flash vendor_boot voltage-5.2-kernel-flash-vendor_boot.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
                         <li>Reboot to recovery (<kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Vol Up</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd>).</li>
                         <li>Flash your desired kernel zip file via recovery (e.g., ADB Sideload or SD Card).</li>
                         <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
