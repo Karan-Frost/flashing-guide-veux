@@ -114,7 +114,7 @@
                             <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
                             <li>On your PC, run:</li>
                             <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload rom.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                            <li>Confirm 'Yes' on the prompt after sideloading.</li>
+                            <li>Confirm 'Yes' on the prompt that tells you to reboot to recovery after sideloading.</li>
                             <li>Select <span class="font-semibold text-slate-100">Factory Reset</span>.</li>
                             <li>Select <span class="font-semibold text-slate-100">Format Data/Factory Reset</span>.</li>
                             <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
@@ -126,7 +126,7 @@
                         <h3 class="text-xl font-bold text-white mb-4">2. Clean Flash (Sandbox GApps)</h3>
                         <p class="mb-4">Follow steps 1-6 from the <span class="font-semibold text-slate-100">Clean Flash (Vanilla)</span> method above.</p>
                         <ol class="list-decimal list-inside space-y-2" start="7">
-                            <li>After rebooting, download and install the <a href="https://github.com/GrapheneOS/AppStore/releases" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">GrapheneOS App Store</a>.</li>
+                            <li>After rebooting to system, download and install the <a href="https://github.com/GrapheneOS/AppStore/releases" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">GrapheneOS App Store</a>.</li>
                             <li>Open the app and install Google Play services, Google Services Framework and Google Play Store.</li>
                         </ol>
                         <div class="mt-4 flex flex-col md:flex-row gap-4 items-center bg-slate-700/50 p-4 rounded-lg">
@@ -145,8 +145,8 @@
                              <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
                             <li>Sideload the ROM zip:</li>
                             <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload rom.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                            <li>Confirm 'Yes' on the prompt.</li>
-                            <li><span class="font-semibold text-slate-100">DO NOT REBOOT.</span> Go back and select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span> again.</li>
+                            <li>Confirm 'Yes' on the prompt that tells you to reboot to recovery after sideloading.</li>
+                            <li><span class="font-semibold text-slate-100">DO NOT REBOOT to System.</span> Go back and select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span> again.</li>
                             <li>Sideload your GApps package:</li>
                             <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload gapps.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
                             <li>Select <span class="font-semibold text-slate-100">Advanced</span> &rarr; <span class="font-semibold text-slate-100">Reboot to Recovery</span>.</li>
@@ -168,13 +168,13 @@
                             <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
                             <li>Sideload the new ROM zip:</li>
                             <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload rom.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                            <li>Confirm 'Yes' on the prompt.</li>
+                            <li>Confirm 'Yes' on the prompt that tells you to reboot to recovery after sideloading.</li>
                             <li>If you did not flash GApps previously, select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
                         </ol>
                         <div class="mt-4 border-t border-slate-700 pt-4">
                             <p class="font-semibold text-yellow-300">If you flashed GApps previously:</p>
                             <ol class="list-decimal list-inside space-y-2 mt-2">
-                                <li><span class="font-bold">DO NOT REBOOT.</span> Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span> again.</li>
+                                <li><span class="font-bold">DO NOT REBOOT to System.</span> Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span> again.</li>
                                 <li>Sideload the GApps zip:</li>
                                  <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload gapps.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
                                 <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
