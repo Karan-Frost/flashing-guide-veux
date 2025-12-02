@@ -81,7 +81,7 @@
             <!-- Section 2: Flashing Firmware -->
             <section id="section-firmware">
                 <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing Firmware</h2>
-                <p class="mb-4">Download the latest regional firmware from <a href="https://t.me/sweaterinsack/3/5" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">here</a>.</p>
+                <p class="mb-4">Download the latest regional firmware from <a href="https://t.me/sweaterinsack/3/5" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">here</a>. You can flash the firmware using two different methods. Pick the one that’s relevant for you.</p>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="bg-slate-800 p-6 rounded-lg shadow-lg md:border-r md:border-slate-700">
                         <h4 class="font-semibold text-white mb-2">Method 1: ADB Sideload</h4>
@@ -106,10 +106,11 @@
             <!-- Section 3: Flashing ROM -->
             <section id="section-rom">
                 <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing ROM</h2>
+                <p class="mb-4">Customize your experience by choosing one of the three options below.</p>
                 <div class="space-y-8">
                     <!-- Clean Flash (Vanilla) -->
                     <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-white mb-4">1. Clean Flash (Vanilla)</h3>
+                        <h3 class="text-xl font-bold text-white mb-4">Option 1: Clean Flash - Vanilla</h3>
                         <ol class="list-decimal list-inside space-y-2">
                             <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
                             <li>On your PC, run:</li>
@@ -123,7 +124,7 @@
 
                     <!-- Clean Flash (Sandbox GApps) -->
                     <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-white mb-4">2. Clean Flash (Sandbox GApps)</h3>
+                        <h3 class="text-xl font-bold text-white mb-4">Option 2: Clean Flash - Sandbox GApps</h3>
                         <p class="mb-4">Follow steps 1-6 from the <span class="font-semibold text-slate-100">Clean Flash (Vanilla)</span> method above.</p>
                         <ol class="list-decimal list-inside space-y-2" start="7">
                             <li>After rebooting to system, download and install the <a href="https://github.com/GrapheneOS/AppStore/releases" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">GrapheneOS App Store</a>.</li>
@@ -140,7 +141,7 @@
 
                     <!-- Clean Flash (Normal GApps) -->
                     <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-white mb-4">3. Clean Flash (Normal GApps)</h3>
+                        <h3 class="text-xl font-bold text-white mb-4">Option 3: Clean Flash - Normal GApps</h3>
                         <ol class="list-decimal list-inside space-y-2">
                              <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
                             <li>Sideload the ROM zip:</li>
@@ -161,9 +162,10 @@
             <!-- Section 4: Updating ROM -->
             <section id="section-update">
                 <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Updating ROM</h2>
+                <p class="mb-4">You can update the ROM using two different methods. Pick the one that’s relevant for you.</p>
                 <div class="grid md:grid-cols-2 gap-8">
                      <div class="bg-slate-800 p-6 rounded-lg shadow-lg md:border-r md:border-slate-700">
-                        <h3 class="text-xl font-bold text-white mb-4">1. Dirty Flash</h3>
+                        <h3 class="text-xl font-bold text-white mb-4">Method 1: Dirty Flash</h3>
                         <ol class="list-decimal list-inside space-y-2">
                             <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
                             <li>Sideload the new ROM zip:</li>
@@ -182,7 +184,8 @@
                         </div>
                     </div>
                      <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-white mb-4">2. Through OTA</h3>
+                        <h3 class="text-xl font-bold text-white mb-4">Method 2: Updating Through OTA</h3>
+                         <p class="font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Note: This method does not work for major version upgrades (for example, 4.x to 5.x).</p>
                          <ol class="list-decimal list-inside space-y-2">
                              <li>Navigate to <span class="font-semibold text-slate-100">Settings</span> &rarr; <span class="font-semibold text-slate-100">System</span> &rarr; <span class="font-semibold text-slate-100">System updates</span>.</li>
                              <li>Download the latest available build.</li>
