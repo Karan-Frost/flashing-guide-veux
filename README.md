@@ -1,6 +1,6 @@
 # Flashing Guide for `veux`/`peux`
 
-> **Supported Devices:** Xiaomi Redmi Note 11 Pro / 11 Pro+ / 11E Pro / POCO X4 Pro
+> **Supported Devices:** Xiaomi Redmi Note 11 Pro 5G / 11 Pro+ 5G / 11E Pro / POCO X4 Pro 5G
 
 ## Contributing
 
