@@ -1,30 +1,50 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const copyButtons = document.querySelectorAll('.copy-btn');
+// Copy-to-clipboard for every command block
+        document.querySelectorAll('.copy-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var block = btn.closest('.command-block');
+                var code = block ? block.querySelector('code') : null;
+                if (!code) return;
 
-    copyButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const codeElement = button.previousElementSibling;
-            const codeToCopy = codeElement.innerText;
+                var text = code.innerText;
+                var original = btn.textContent;
 
-            const textArea = document.createElement('textarea');
-            textArea.value = codeToCopy;
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                button.textContent = 'Copied!';
-                button.classList.add('bg-green-600', 'hover:bg-green-600');
-            } catch (err) {
-                console.error('Failed to copy text: ', err);
-                button.textContent = 'Error';
-                button.classList.add('bg-red-600', 'hover:bg-red-600');
-            }
-            document.body.removeChild(textArea);
+                var done = function () {
+                    btn.textContent = 'Copied';
+                    setTimeout(function () {
+                        btn.textContent = original;
+                    }, 1500);
+                };
 
-            setTimeout(() => {
-                button.textContent = 'Copy';
-                button.classList.remove('bg-green-600', 'hover:bg-green-600', 'bg-red-600', 'hover:bg-red-600');
-            }, 2000);
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text).then(done, function () {});
+                } else {
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    try { document.execCommand('copy'); done(); } catch (e) {}
+                    document.body.removeChild(ta);
+                }
+            });
         });
-    });
-});
+
+        // Auto-open a FAQ entry when it is linked directly (e.g. #miui-overwrite)
+        function openTargetFaq() {
+            if (!location.hash) return;
+
+            var target;
+            try {
+                target = document.querySelector(location.hash);
+            } catch (e) {
+                return;
+            }
+
+            if (target && target.tagName === 'DETAILS') {
+                target.open = true;
+                target.setAttribute('open', '');
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        window.addEventListener('hashchange', openTargetFaq);
+        window.addEventListener('load', openTargetFaq);

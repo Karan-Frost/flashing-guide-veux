@@ -3,228 +3,1876 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voltage OS Flashing Guide for veux/peux</title>
+
+    <title>VoltageOS Flashing Guide for veux/peux</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gradient-to-b from-slate-900 to-black text-slate-300">
+
+<body class="bg-gradient-to-b from-slate-950 via-slate-900 to-black text-slate-300">
 
     <!-- Header -->
-    <header class="bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50 border-b border-slate-700">
-        <nav class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <span class="font-bold text-xl text-white">VoltageOS Guide (veux/peux)</span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#section-recovery" class="text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Recovery</a>
-                        <a href="#section-firmware" class="text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Firmware</a>
-                        <a href="#section-rom" class="text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">ROM</a>
-                        <a href="#section-update" class="text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Update</a>
-                        <a href="#section-kernel" class="text-slate-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Kernel</a>
+    <header class="bg-slate-950/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-700">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+            <div class="flex items-center justify-between min-h-16 py-3 gap-4">
+                <a href="#" class="font-bold text-lg sm:text-xl text-white">
+                    VoltageOS Guide
+                    <span class="block sm:inline text-cyan-400 text-sm sm:text-base">(veux/peux)</span>
+                </a>
+
+                <div class="hidden lg:block">
+                    <div class="flex items-center gap-1">
+                        <a href="#before-you-begin" class="nav-link">Start Here</a>
+                        <a href="#preparation" class="nav-link">Preparation</a>
+                        <a href="#recovery" class="nav-link">Recovery</a>
+                        <a href="#firmware" class="nav-link">Firmware</a>
+                        <a href="#rom" class="nav-link">ROM</a>
+                        <a href="#updates" class="nav-link">Updates</a>
+                        <a href="#troubleshooting" class="nav-link">Troubleshooting</a>
                     </div>
+                </div>
+            </div>
+
+            <!-- Mobile / tablet navigation -->
+            <div class="lg:hidden -mx-1 pb-2 overflow-x-auto">
+                <div class="flex items-center gap-1 w-max px-1">
+                    <a href="#before-you-begin" class="nav-link">Start Here</a>
+                    <a href="#preparation" class="nav-link">Preparation</a>
+                    <a href="#platform-tools" class="nav-link">Platform-Tools</a>
+                    <a href="#boot-modes" class="nav-link">Boot Modes</a>
+                    <a href="#recovery" class="nav-link">Recovery</a>
+                    <a href="#firmware" class="nav-link">Firmware</a>
+                    <a href="#rom" class="nav-link">ROM</a>
+                    <a href="#updates" class="nav-link">Updates</a>
+                    <a href="#troubleshooting" class="nav-link">Troubleshooting</a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Voltage OS Flashing Guide for veux/peux</h1>
-            <p class="mt-4 text-lg text-slate-400">Your complete guide to installing Voltage OS on your Xiaomi Redmi Note 11 Pro 5G / 11 Pro+ 5G / 11E Pro / POCO X4 Pro 5G (veux/peux).</p>
-        </div>
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 
-        <!-- Warning! -->
-        <div class="mb-12">
-            <h2 class="text-2xl font-semibold text-white border-l-4 border-yellow-400 pl-4 mb-6">Warning!</h2>
-            <div class="font-mono whitespace-pre-wrap bg-slate-900 border border-yellow-500/50 rounded-lg p-4 text-sm text-yellow-300">/*
- * Your <span class="font-bold text-yellow-400 animate-pulse">warranty</span> is now void.
- *
- * Most custom ROMs are released stable and safe to use…
- * but if you decide to play mad scientist, mess something up, and
- * end up corrupting your SD card, turning your phone into a fancy paperweight,
- * or bricking it beyond recognition, don’t blame me.
- * I warned you. In fact, I’ll probably just laugh.
- */</div>
-        </div>
+        <!-- Hero -->
+        <section class="text-center mb-14">
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-5">
+                <span class="hero-chip">Beginner-friendly installation guide</span>
+                <span class="hero-chip">veux / peux only</span>
+                <span class="hero-chip">Unlocked bootloader required</span>
+                <span class="hero-chip">Clean flash wipes internal storage</span>
+            </div>
 
-        <!-- Instructions Container -->
-        <div class="space-y-12">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
+                VoltageOS Flashing Guide
+            </h1>
 
-            <!-- Section 1: Flashing Recovery (Initial Install ZIP) -->
-            <section id="section-recovery">
-                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing Recovery (Initial Install ZIP)</h2>
-                <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                    <h3 class="font-semibold text-white text-lg mb-4">Download:</h3>
-                    <ul class="list-disc list-inside space-y-3 mb-6">
-                        <li><a href="https://sourceforge.net/projects/voltage-os/files/veux/recovery/" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">Initial Install ZIP</a></li>
+            <p class="mt-4 text-lg sm:text-xl text-slate-400 max-w-4xl mx-auto">
+                A complete step-by-step guide for installing and updating VoltageOS on
+                Xiaomi Redmi Note 11 Pro 5G, Redmi Note 11 Pro+ 5G,
+                Redmi Note 11E Pro and POCO X4 Pro 5G.
+            </p>
+
+            <p class="mt-3 text-cyan-300 font-mono text-sm">
+                Device codenames: veux / peux
+            </p>
+        </section>
+
+        <!-- Important warning -->
+        <section class="mb-12" aria-labelledby="warning-title">
+            <div class="rounded-xl border border-red-500/50 bg-red-950/30 p-5 sm:p-6 shadow-lg">
+                <h2 id="warning-title" class="text-2xl font-bold text-red-300 mb-4">
+                    Important warning — read this first
+                </h2>
+
+                <div class="space-y-3 text-red-100/90">
+                    <p>
+                        Installing a custom ROM modifies important software on your phone.
+                        A mistake can cause data loss, boot loops or, in rare cases, a device that
+                        does not boot normally.
+                    </p>
+
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Your bootloader must already be unlocked.</li>
+                        <li>Unlocking the bootloader normally erases all user data.</li>
+                        <li>Make a complete backup before starting.</li>
+                        <li>Use files made for <strong>veux/peux</strong> only.</li>
+                        <li>Do not disconnect the USB cable while a flash is in progress.</li>
+                        <li>Do not use random files, modified files or files from another device.</li>
+                        <li>You are responsible for your device and your data.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warranty void / humorous disclaimer -->
+        <section class="mb-12" aria-labelledby="warranty-title">
+            <div class="rounded-xl border border-yellow-500/50 bg-yellow-950/20 p-5 sm:p-6 shadow-lg">
+                <h2 id="warranty-title" class="text-2xl font-bold text-yellow-300 mb-4">
+                    Heads up
+                </h2>
+
+                <div class="space-y-3 text-yellow-100/90">
+                    <p class="text-lg">
+                        Your <span class="font-bold text-yellow-400 animate-pulse">warranty</span> is now void.
+                    </p>
+
+                    <ul class="list-none space-y-2 font-mono text-sm sm:text-base text-yellow-100/80">
+                        <li>* Most custom ROMs are released stable and safe to use…</li>
+                        <li>* but if you decide to play mad scientist, mess something up, and</li>
+                        <li>* end up corrupting your SD card, turning your phone into a fancy paperweight,</li>
+                        <li>* or bricking it beyond recognition, don’t blame me.</li>
+                        <li>* I warned you. In fact, I’ll probably just laugh.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Before you begin -->
+        <section id="before-you-begin" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">1</span>
+                <div>
+                    <h2>Before You Begin</h2>
+                    <p>Complete these checks before downloading or flashing anything.</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6">
+                <div class="info-card">
+                    <h3 class="card-title">Confirm your device</h3>
+
+                    <p class="mb-4">
+                        This guide is intended for the following devices:
+                    </p>
+
+                    <ul class="check-list">
+                        <li>Xiaomi Redmi Note 11 Pro 5G</li>
+                        <li>Xiaomi Redmi Note 11 Pro+ 5G</li>
+                        <li>Xiaomi Redmi Note 11E Pro</li>
+                        <li>POCO X4 Pro 5G</li>
                     </ul>
 
-                    <h3 class="font-semibold text-white text-lg mt-8 mb-4">Steps:</h3>
-                    <p class="mb-4">1. Reboot to fastboot mode by holding <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Volume Down</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd> until the fastboot logo appears.</p>
-                    <p class="mb-4">2. Connect your phone to your PC and run the following commands:</p>
-
-                    <div class="space-y-4">
-                        <pre class="bg-slate-900 rounded-md p-4 text-sm relative mt-2"><code class="text-slate-300">fastboot reboot fastboot</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative"><code class="text-slate-300">fastboot --skip-reboot update voltage-6.2-veux-20261015-1450-OFFICIAL-initial-install.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
+                    <div class="note-box mt-5">
+                        <strong>Device codename:</strong>
+                        <p class="mt-1">
+                            The codename must be <code>veux</code> or <code>peux</code>.
+                            Do not continue if you are unsure which device you have.
+                        </p>
                     </div>
 
-                    <p class="mt-6">3. Reboot to recovery mode by holding <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Volume Up</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd> until the recovery screen appears.</p>
+                    <p class="mt-4">
+                        You can usually check the model in
+                        <strong>Settings → About phone</strong>. The exact menu may be
+                        different depending on your current software.
+                    </p>
                 </div>
-            </section>
 
-            <!-- Section 2: Flashing Firmware -->
-            <section id="section-firmware">
-                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing Firmware</h2>
-                <p class="mb-4">Download the latest regional firmware from <a href="https://t.me/sweaterinsack/3/5" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">here</a>. You can flash the firmware using two different methods. Pick the one that’s relevant for you.</p>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg md:border-r md:border-slate-700">
-                        <h4 class="font-semibold text-white mb-2">Method 1: ADB Sideload</h4>
-                        <ol class="list-decimal list-inside space-y-2">
-                            <li>In recovery, select <span class="font-semibold text-slate-100">Apply Update</span>.</li>
-                            <li>Select <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
-                            <li>Connect phone to PC and run this command:</li>
-                            <pre class="bg-slate-900 rounded-md p-4 text-sm relative mt-2"><code class="text-slate-300">adb sideload firmware.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                        </ol>
-                    </div>
-                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                        <h4 class="font-semibold text-white mb-2">Method 2: SD Card / OTG</h4>
-                         <ol class="list-decimal list-inside space-y-2">
-                            <li>In recovery, select <span class="font-semibold text-slate-100">Apply Update</span>.</li>
-                            <li>Select <span class="font-semibold text-slate-100">Choose from sdcard</span>.</li>
-                            <li>Navigate to and select your <span class="font-mono">firmware.zip</span> file.</li>
-                        </ol>
-                    </div>
-                </div>
-            </section>
+                <div class="info-card">
+                    <h3 class="card-title">Prepare your phone and computer</h3>
 
-            <!-- Section 3: Flashing ROM -->
-            <section id="section-rom">
-                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing ROM</h2>
-                <p class="mb-4">Customize your experience by choosing one of the three options below.</p>
-                <div class="space-y-8">
-                    <!-- Clean Flash (Vanilla) -->
-                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-white mb-4">Option 1: Clean Flash - Vanilla</h3>
-                        <ol class="list-decimal list-inside space-y-2">
-                            <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
-                            <li>On your PC, run:</li>
-                            <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload rom.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                            <li>Confirm 'Yes' on the prompt that tells you to reboot to recovery after sideloading.</li>
-                            <li>Select <span class="font-semibold text-slate-100">Factory Reset</span>.</li>
-                            <li>Select <span class="font-semibold text-slate-100">Format Data/Factory Reset</span>.</li>
-                            <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
-                        </ol>
-                    </div>
+                    <ul class="check-list">
+                        <li>Charge the phone to at least 60%.</li>
+                        <li>Use a reliable USB data cable.</li>
+                        <li>Use a USB port directly on your computer.</li>
+                        <li>Install Android platform-tools.</li>
+                        <li>Install USB drivers if you are using Windows.</li>
+                        <li>Keep the phone connected during each operation.</li>
+                        <li>Close programs that may interfere with ADB or Fastboot.</li>
+                        <li>Disable aggressive antivirus blocking if it prevents the tools from running.</li>
+                    </ul>
 
-                    <!-- Clean Flash (Sandbox GApps) -->
-                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-white mb-4">Option 2: Clean Flash - Sandbox GApps</h3>
-                        <p class="mb-4">Follow steps 1-6 from the <span class="font-semibold text-slate-100">Clean Flash (Vanilla)</span> method above.</p>
-                        <ol class="list-decimal list-inside space-y-2" start="7">
-                            <li>After rebooting to system, download and install the <a href="https://github.com/GrapheneOS/AppStore/releases" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">GrapheneOS App Store</a>.</li>
-                            <li>Open the app and install Google Play services, Google Services Framework and Google Play Store.</li>
-                        </ol>
-                        <div class="mt-4 flex flex-col md:flex-row gap-4 items-center bg-slate-700/50 p-4 rounded-lg">
-                             <img src="https://raw.githubusercontent.com/Karan-Frost/images/refs/heads/main/IMG_20241209_143433_631.jpg" alt="GrapheneOS App Store screenshot" class="rounded-md w-full md:w-1/3 object-cover">
-                             <div class="text-sm">
-                                 <p class="mb-2">For more information on Sandboxed Google Play, read the <a href="https://grapheneos.org/usage#sandboxed-google-play" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">official documentation</a>.</p>
-                                 <p>For potential fixes and workarounds, check <a href="https://t.me/voltageos/122664" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">this post</a>.</p>
-                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Clean Flash (Normal GApps) -->
-                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-white mb-4">Option 3: Clean Flash - Normal GApps</h3>
-                        <ol class="list-decimal list-inside space-y-2">
-                             <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
-                            <li>Sideload the ROM zip:</li>
-                            <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload rom.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                            <li>Confirm 'Yes' on the prompt that tells you to reboot to recovery after sideloading.</li>
-                            <li><span class="font-semibold text-slate-100">DO NOT REBOOT to System.</span> Go back and select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span> again.</li>
-                            <li>Sideload your GApps package:</li>
-                            <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload gapps.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                            <li>Select <span class="font-semibold text-slate-100">Advanced</span> &rarr; <span class="font-semibold text-slate-100">Reboot to Recovery</span>.</li>
-                            <li>Once back in recovery, select <span class="font-semibold text-slate-100">Factory Reset</span>.</li>
-                            <li>Select <span class="font-semibold text-slate-100">Format Data/Factory Reset</span>.</li>
-                            <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
-                        </ol>
+                    <div class="tip-box mt-5">
+                        <strong>Cable and port first:</strong>
+                        <p class="mt-1">
+                            Avoid USB hubs and damaged cables. Most “device not detected”
+                            problems are caused by the cable or USB port, not by the phone.
+                        </p>
                     </div>
                 </div>
-            </section>
-            
-            <!-- Section 4: Updating ROM -->
-            <section id="section-update">
-                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Updating ROM</h2>
-                <p class="mb-4">You can update the ROM using two different methods. Pick the one that’s relevant for you.</p>
-                <div class="grid md:grid-cols-2 gap-8">
-                     <div class="bg-slate-800 p-6 rounded-lg shadow-lg md:border-r md:border-slate-700">
-                        <h3 class="text-xl font-bold text-white mb-4">Method 1: Dirty Flash</h3>
-                        <ol class="list-decimal list-inside space-y-2">
-                            <li>Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span>.</li>
-                            <li>Sideload the new ROM zip:</li>
-                            <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload rom.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                            <li>Confirm 'Yes' on the prompt that tells you to reboot to recovery after sideloading.</li>
-                            <li>If you did not flash GApps previously, select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
-                        </ol>
-                        <div class="mt-4 border-t border-slate-700 pt-4">
-                            <p class="font-semibold text-yellow-300">If you flashed GApps previously:</p>
-                            <ol class="list-decimal list-inside space-y-2 mt-2">
-                                <li><span class="font-bold">DO NOT REBOOT to System.</span> Select <span class="font-semibold text-slate-100">Apply Update</span> &rarr; <span class="font-semibold text-slate-100">Apply Update from ADB</span> again.</li>
-                                <li>Sideload the GApps zip:</li>
-                                 <pre class="bg-slate-900 rounded-md p-4 text-sm relative my-2"><code class="text-slate-300">adb sideload gapps.zip</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                                <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
-                            </ol>
-                        </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Back up your data</h3>
+
+                <p>
+                    A clean installation formats the data partition and may erase internal
+                    storage. Back up everything important before continuing.
+                </p>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+                    <div class="small-card">
+                        <strong>Photos and videos</strong>
+                        <span>Copy them to a computer or cloud storage.</span>
                     </div>
-                     <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-white mb-4">Method 2: Updating Through OTA</h3>
-                         <p class="font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Note: This method does not work for major version upgrades (for example, 4.x to 5.x).</p>
-                         <ol class="list-decimal list-inside space-y-2">
-                             <li>Navigate to <span class="font-semibold text-slate-100">Settings</span> &rarr; <span class="font-semibold text-slate-100">System</span> &rarr; <span class="font-semibold text-slate-100">System updates</span>.</li>
-                             <li>Download the latest available build.</li>
-                             <li>Tap <span class="font-semibold text-slate-100">Reboot</span> in the updater once the download is complete.</li>
-                             <li>The device will automatically update and reboot.</li>
-                         </ol>
-                         <div class="mt-4 border-t border-slate-700 pt-4">
-                            <p class="font-semibold text-yellow-300">You do not need to flash GApps if you use this method to update the ROM.</p>
-                         </div>
+
+                    <div class="small-card">
+                        <strong>Documents</strong>
+                        <span>Save downloads, recordings and work files.</span>
+                    </div>
+
+                    <div class="small-card">
+                        <strong>Messages and contacts</strong>
+                        <span>Confirm that synchronization or backup is enabled.</span>
+                    </div>
+
+                    <div class="small-card">
+                        <strong>Authentication apps</strong>
+                        <span>Export recovery codes before wiping the phone.</span>
                     </div>
                 </div>
-            </section>
 
-            <!-- Section 5: Flashing different kernel -->
-            <section id="section-kernel">
-                <h2 class="text-2xl font-semibold text-white border-l-4 border-cyan-400 pl-4 mb-6">Flashing a Different Kernel</h2>
-                <div class="bg-slate-800 p-6 rounded-lg shadow-lg">
-                    <p class="mb-4 text-yellow-300 font-medium">Note: NOT REQUIRED AFTER VoltageOS 5.6.</p>
-                    <ol class="list-decimal list-inside space-y-2">
-                        <li>Download the required <span class="font-semibold text-slate-100">vendor_boot.img</span> from <a href="https://sourceforge.net/projects/voltage-os-veux-peux/files/kernel-flash/voltage-5.6-kernel-flash-vendor_boot.img/download" target="_blank" class="text-cyan-400 hover:text-cyan-300 underline">here</a>.</li>
-                        <li>Reboot to fastboot mode (<kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Vol Down</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd>).</li>
-                        <li>Flash the downloaded vendor_boot:</li>
-                        <pre class="bg-slate-900 rounded-md py-4 pl-4 pr-24 text-sm relative my-2"><code class="text-slate-300">fastboot flash vendor_boot voltage-5.6-kernel-flash-vendor_boot.img</code><button class="copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-1 px-2 rounded">Copy</button></pre>
-                        <li>Reboot to recovery (<kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Vol Up</kbd> + <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Power</kbd>).</li>
-                        <li>Flash your desired kernel zip file via recovery (e.g., ADB Sideload or SD Card).</li>
-                        <li>Select <span class="font-semibold text-slate-100">Reboot System Now</span>.</li>
+                <div class="warning-box mt-5">
+                    <strong>Do not rely only on files stored on the phone.</strong>
+                    <p class="mt-1">
+                        Do not keep your only backup on the phone. Formatting data can
+                        permanently remove files from internal storage.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preparation -->
+        <section id="preparation" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">2</span>
+                <div>
+                    <h2>Download and Prepare the Files</h2>
+                    <p>Organize everything before entering fastboot or recovery.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3 class="card-title">Files you may need</h3>
+
+                <p class="mb-5">
+                    Download the files required for the installation method you want to use.
+                    The exact filenames and versions may change over time.
+                </p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-600 text-slate-100">
+                                <th class="py-3 pr-4">File</th>
+                                <th class="py-3 pr-4">Purpose</th>
+                                <th class="py-3">Required?</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="divide-y divide-slate-700">
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">initial-install.zip</td>
+                                <td class="py-3 pr-4">
+                                    Contains the foundational boot images
+                                    (<code>boot.img</code>, <code>vendor_boot.img</code>,
+                                    <code>dtbo.img</code>) that are flashed individually
+                                    in fastboot.
+                                </td>
+                                <td class="py-3">New installation</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">boot.img</td>
+                                <td class="py-3 pr-4">
+                                    Contains the boot and recovery environment for this device.
+                                </td>
+                                <td class="py-3">Initial installation</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">vendor_boot.img</td>
+                                <td class="py-3 pr-4">
+                                    Provides vendor boot components required by the ROM.
+                                </td>
+                                <td class="py-3">Initial installation</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">dtbo.img</td>
+                                <td class="py-3 pr-4">
+                                    Provides device-tree boot configuration.
+                                </td>
+                                <td class="py-3">Initial installation</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">firmware.zip</td>
+                                <td class="py-3 pr-4">Provides low-level device firmware.</td>
+                                <td class="py-3">Usually required</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">rom.zip</td>
+                                <td class="py-3 pr-4">The main VoltageOS operating system package.</td>
+                                <td class="py-3">Required</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">gapps.zip</td>
+                                <td class="py-3 pr-4">Traditional Google applications.</td>
+                                <td class="py-3">Optional</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-box mt-6">
+                    <strong>Filename note:</strong>
+                    <p class="mt-1">
+                        Names such as <code>rom.zip</code>, <code>firmware.zip</code> and
+                        <code>gapps.zip</code> are examples used in this guide. Your downloaded
+                        files will probably have longer version-specific names.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Download sources at a glance</h3>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-600 text-slate-100">
+                                <th class="py-3 pr-4">What</th>
+                                <th class="py-3">Where</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="divide-y divide-slate-700">
+                            <tr>
+                                <td class="py-3 pr-4">Initial install package (recovery images)</td>
+                                <td class="py-3">
+                                    <a href="https://sourceforge.net/projects/voltage-os/files/veux/recovery/"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="table-link">
+                                        SourceForge — veux / recovery
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4">VoltageOS ROM builds</td>
+                                <td class="py-3">
+                                    <a href="https://sourceforge.net/projects/voltage-os/files/veux/"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="table-link">
+                                        SourceForge — veux
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4">Regional firmware</td>
+                                <td class="py-3">
+                                    <a href="https://t.me/sweaterinsack/3/5"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="table-link">
+                                        Firmware channel
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4">Sandboxed Google Play apps</td>
+                                <td class="py-3">
+                                    <a href="https://github.com/GrapheneOS/Apps/releases"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="table-link">
+                                        GrapheneOS Apps releases
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box mt-5">
+                    <strong>Verify before you flash.</strong>
+                    <p class="mt-1">
+                        Always confirm that a package is built for <strong>veux</strong> or
+                        <strong>peux</strong> and matches your current Android version before
+                        using it.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-6">
+                <div class="info-card">
+                    <h3 class="card-title">Suggested folder layout</h3>
+
+                    <p>
+                        Create one folder on your computer and place the required files inside it.
+                    </p>
+
+                    <pre class="command-block"><code>VoltageOS-veux/
+├── platform-tools/
+├── initial-install.zip
+├── boot.img
+├── vendor_boot.img
+├── dtbo.img
+├── firmware.zip
+├── voltageos-rom.zip
+└── gapps.zip</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                    <p class="text-sm text-slate-400 mt-4">
+                        Keep original filenames unless a command specifically requires a rename.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="card-title">How to unzip or extract files</h3>
+
+                    <ol class="number-list">
+                        <li>Open your Downloads folder.</li>
+                        <li>Right-click the downloaded archive.</li>
+                        <li>Select <strong>Extract All</strong>, <strong>Extract Here</strong> or the equivalent option.</li>
+                        <li>Open the extracted folder.</li>
+                        <li>Move the required <code>.zip</code>, <code>.img</code> or platform-tools files into your prepared VoltageOS folder.</li>
                     </ol>
+
+                    <div class="warning-box mt-5">
+                        <strong>Not every file should be extracted.</strong>
+                        <p class="mt-1">
+                            The <strong>initial install package</strong> is extracted, because the
+                            images inside it are flashed one by one. ROM, firmware and GApps ZIPs
+                            are <strong>not</strong> extracted — they are flashed as ZIPs.
+                        </p>
+                    </div>
                 </div>
-            </section>
-            
-        </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Check for nested archives</h3>
+
+                <p>
+                    A frequent mistake is selecting a ZIP that contains another ZIP. For example:
+                </p>
+
+                <pre class="command-block"><code>Downloads/
+└── VoltageOS-download.zip
+    └── voltageos-rom.zip</code></pre>
+
+                <p class="mt-4">
+                    Extract the outer archive first, then use the actual flashable ZIP inside.
+                    Do not flash a random folder or an incomplete archive.
+                </p>
+
+                <div class="tip-box mt-5">
+                    <strong>Do not open and re-compress a ROM ZIP.</strong>
+                    <p class="mt-1">
+                        Re-compressing a flashable ZIP can change its structure and make recovery
+                        reject it.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platform tools -->
+        <section id="platform-tools" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">3</span>
+                <div>
+                    <h2>Install and Test Platform-Tools</h2>
+                    <p>ADB and Fastboot allow your computer to communicate with the phone.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3 class="card-title">What are ADB and Fastboot?</h3>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div class="small-card">
+                        <strong>ADB</strong>
+                        <span>
+                            Android Debug Bridge is used when Android or recovery is running.
+                            It can send commands and perform an ADB sideload.
+                        </span>
+                    </div>
+
+                    <div class="small-card">
+                        <strong>Fastboot</strong>
+                        <span>
+                            Fastboot is used from the bootloader or fastbootd environment
+                            to write images to partitions and change boot modes.
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-6">
+                <div class="info-card">
+                    <h3 class="card-title">Windows users</h3>
+
+                    <ol class="number-list">
+                        <li>Download and extract Android platform-tools.</li>
+                        <li>Open the extracted <code>platform-tools</code> folder.</li>
+                        <li>Click the address bar in File Explorer.</li>
+                        <li>Type <code>cmd</code> and press Enter.</li>
+                        <li>Use the commands in this guide from that window.</li>
+                    </ol>
+
+                    <div class="note-box mt-5">
+                        <strong>Note:</strong>
+                        <p class="mt-1">
+                            On Windows, you may need to type <code>.\</code> before commands,
+                            for example <code>.\adb devices</code> or
+                            <code>.\fastboot devices</code>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="card-title">Linux and macOS users</h3>
+
+                    <ol class="number-list">
+                        <li>Download and extract platform-tools.</li>
+                        <li>Open a Terminal window.</li>
+                        <li>Change to the platform-tools directory.</li>
+                        <li>Run ADB and Fastboot commands from that directory.</li>
+                    </ol>
+
+                    <p class="mt-4 text-sm text-slate-400">
+                        Depending on your system, you may need to use
+                        <code>./adb</code> and <code>./fastboot</code>, or install them
+                        through your operating system package manager.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Test Fastboot before flashing</h3>
+
+                <p>
+                    Boot the phone into bootloader fastboot mode first, then connect it to the
+                    computer and run:
+                </p>
+
+                <pre class="command-block"><code>fastboot devices</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <p class="mt-4">
+                    A working connection normally displays a device identifier followed by
+                    the word <code>fastboot</code>.
+                </p>
+
+                <div class="tip-box mt-5">
+                    <strong>Stop if nothing is displayed.</strong>
+                    <p class="mt-1">
+                        Solve the USB driver, cable or platform-tools problem before flashing.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Command cheat sheet</h3>
+
+                <p>
+                    Every command used in this guide, and where each one is valid.
+                </p>
+
+                <div class="overflow-x-auto mt-4">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-600 text-slate-100">
+                                <th class="py-3 pr-4">Command</th>
+                                <th class="py-3 pr-4">What it does</th>
+                                <th class="py-3">Valid in</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="divide-y divide-slate-700">
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">fastboot devices</td>
+                                <td class="py-3 pr-4">Lists phones connected in fastboot mode.</td>
+                                <td class="py-3">Bootloader / fastbootd</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">fastboot flash &lt;partition&gt; &lt;file&gt;.img</td>
+                                <td class="py-3 pr-4">Writes an image to a partition.</td>
+                                <td class="py-3">Bootloader fastboot</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">fastboot reboot</td>
+                                <td class="py-3 pr-4">Restarts the phone normally.</td>
+                                <td class="py-3">Bootloader / fastbootd</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">fastboot reboot recovery</td>
+                                <td class="py-3 pr-4">Restarts directly into recovery.</td>
+                                <td class="py-3">fastbootd only</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">adb devices</td>
+                                <td class="py-3 pr-4">Lists phones connected over ADB.</td>
+                                <td class="py-3">Android / recovery</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">adb sideload &lt;file&gt;.zip</td>
+                                <td class="py-3 pr-4">Sends a flashable ZIP to recovery.</td>
+                                <td class="py-3">Recovery (sideload mode)</td>
+                            </tr>
+
+                            <tr>
+                                <td class="py-3 pr-4 font-mono text-cyan-300">adb reboot recovery</td>
+                                <td class="py-3 pr-4">Restarts into recovery.</td>
+                                <td class="py-3">Android (USB debugging on)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-box mt-5">
+                    <strong>Remember:</strong>
+                    <p class="mt-1">
+                        <code>adb</code> commands do not work in bootloader fastboot, and
+                        <code>fastboot</code> commands do not work inside Android or recovery.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Boot modes -->
+        <section id="boot-modes" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">4</span>
+                <div>
+                    <h2>Learn the Important Boot Modes</h2>
+                    <p>Knowing which mode you are using prevents many flashing mistakes.</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <div class="info-card">
+                    <h3 class="card-title">Bootloader Fastboot</h3>
+                    <p>
+                        This is the mode normally entered with
+                        <strong>Volume Down + Power</strong>. It is used for flashing
+                        physical partitions such as <code>boot</code>, <code>dtbo</code> and
+                        <code>vendor_boot</code>.
+                    </p>
+
+                    <div class="note-box mt-5">
+                        <strong>Screen appearance:</strong>
+                        <p class="mt-1">
+                            You may see a Fastboot logo or the Xiaomi bunny logo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="card-title">Fastbootd</h3>
+                    <p>
+                        Fastbootd is a userspace fastboot environment. It is needed for
+                        dynamic (logical) partition operations, not for the image flashing
+                        steps used in this guide.
+                    </p>
+
+                    <div class="note-box mt-5">
+                        <strong>How to enter:</strong>
+                        <p class="mt-1">
+                            From recovery, choose the fastboot or reboot-to-fastboot option,
+                            or run <code>fastboot reboot fastboot</code>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="card-title">Recovery</h3>
+                    <p>
+                        Recovery is a separate maintenance environment used to factory reset
+                        the phone, install ZIP files and perform ADB sideloads.
+                    </p>
+
+                    <div class="note-box mt-5">
+                        <strong>Common button combination:</strong>
+                        <p class="mt-1">
+                            Hold <strong>Volume Up + Power</strong> while the phone is powered off.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Entering bootloader fastboot mode</h3>
+
+                <ol class="number-list">
+                    <li>Power off the phone completely.</li>
+                    <li>Press and hold <strong>Volume Down + Power</strong>.</li>
+                    <li>Release the buttons when the Fastboot screen appears.</li>
+                    <li>Connect the phone to the computer.</li>
+                    <li>Run <code>fastboot devices</code> to confirm the connection.</li>
+                </ol>
+
+                <div class="warning-box mt-5">
+                    <strong>Do not confuse the modes.</strong>
+                    <p class="mt-1">
+                        ADB commands usually do not work in bootloader fastboot, and fastboot
+                        commands do not work from the normal Android system.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recovery -->
+        <section id="recovery" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">5</span>
+                <div>
+                    <h2>Flash the Initial Install Package</h2>
+                    <p>Use this section when installing VoltageOS for the first time.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3 class="card-title">Download the initial install package</h3>
+
+                <p>
+                    Download the latest initial installation ZIP from the official VoltageOS
+                    download location:
+                </p>
+
+                <a href="https://sourceforge.net/projects/voltage-os/files/veux/recovery/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="download-link">
+                    Open VoltageOS recovery downloads
+                </a>
+
+                <div class="warning-box mt-5">
+                    <strong>Important:</strong>
+                    <p class="mt-1">
+                        The <code>initial-install.zip</code> file is not the complete ROM.
+                        It is only used to prepare the foundational boot components and recovery.
+                        Make sure the package is specifically for
+                        <strong>veux</strong> or <strong>peux</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Why the initial ZIP must not be flashed with <code>fastboot update</code></h3>
+
+                <p>
+                    The initial installation ZIP is not a complete system image package.
+                    It does not contain a normal <code>system.img</code>.
+                </p>
+
+                <p class="mt-4">
+                    It contains the foundational images needed to start the custom recovery,
+                    such as:
+                </p>
+
+                <ul class="check-list mt-4">
+                    <li><code>boot.img</code></li>
+                    <li><code>vendor_boot.img</code></li>
+                    <li><code>dtbo.img</code></li>
+                </ul>
+
+                <div class="warning-box mt-5">
+                    <strong>Do not use this command for the initial ZIP:</strong>
+
+                    <pre class="command-block"><code>fastboot --skip-reboot update initial-install.zip</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                    <p class="mt-3">
+                        This command expects a complete update package containing the required
+                        partitions, including a system image. Because the initial ZIP is not a
+                        complete ROM, it can fail with an error such as:
+                    </p>
+
+                    <pre class="command-block"><code>could not load 'system.img'</code><button class="copy-btn" type="button">Copy</button></pre>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Step 1 — Enter bootloader fastboot</h3>
+
+                <ol class="number-list">
+                    <li>Power off the phone.</li>
+                    <li>Hold <strong>Volume Down + Power</strong>.</li>
+                    <li>Wait until the Fastboot screen appears.</li>
+                    <li>Connect the phone to your computer.</li>
+                </ol>
+
+                <p class="mt-4">
+                    Confirm that your computer can see the phone:
+                </p>
+
+                <pre class="command-block"><code>fastboot devices</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <div class="warning-box mt-5">
+                    <strong>Do not continue if no device appears.</strong>
+                    <p class="mt-1">
+                        Check the cable, USB port, drivers and platform-tools first.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Step 2 — Extract the initial install ZIP</h3>
+
+                <p>
+                    The initial install package is <strong>not</strong> flashed as a ZIP.
+                    Extract it first, then flash every image inside it individually.
+                </p>
+
+                <ol class="number-list mt-4">
+                    <li>Right-click the downloaded initial install ZIP.</li>
+                    <li>Choose <strong>Extract All</strong> / <strong>Extract Here</strong>.</li>
+                    <li>Open the extracted folder.</li>
+                    <li>Locate <code>boot.img</code>, <code>vendor_boot.img</code> and <code>dtbo.img</code>.</li>
+                    <li>
+                        Move those image files into your <code>platform-tools</code> folder so the
+                        commands below can find them.
+                    </li>
+                </ol>
+
+                <pre class="command-block"><code>platform-tools/
+├── adb
+├── fastboot
+├── boot.img
+├── vendor_boot.img
+└── dtbo.img</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <div class="note-box mt-5">
+                    <strong>Check the files:</strong>
+                    <p class="mt-1">
+                        The three image files should be directly accessible from the folder where
+                        you will run the Fastboot commands.
+                    </p>
+                </div>
+
+                <div class="warning-box mt-5">
+                    <strong>Do not rename the images.</strong>
+                    <p class="mt-1">
+                        Keep the original filenames. If a file is renamed, the commands below
+                        will fail with “cannot load”.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Step 3 — Flash each image from the package</h3>
+
+                <p>
+                    Stay in <strong>bootloader fastboot</strong> and flash the images one at a
+                    time. Wait for each command to report <code>OKAY</code> and
+                    <code>Finished</code> before running the next one.
+                </p>
+
+                <p class="mt-4 font-semibold text-slate-100">1. Flash the boot image</p>
+                <pre class="command-block"><code>fastboot flash boot boot.img</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <p class="mt-5 font-semibold text-slate-100">2. Flash the vendor_boot image</p>
+                <pre class="command-block"><code>fastboot flash vendor_boot vendor_boot.img</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <p class="mt-5 font-semibold text-slate-100">3. Flash the dtbo image</p>
+                <pre class="command-block"><code>fastboot flash dtbo dtbo.img</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <div class="space-y-4 mt-6">
+                    <div class="step-note">
+                        <strong>boot.img</strong>
+                        <span>Provides the boot image and the recovery environment used by this device.</span>
+                    </div>
+
+                    <div class="step-note">
+                        <strong>vendor_boot.img</strong>
+                        <span>Provides vendor boot components required for the ROM to start correctly.</span>
+                    </div>
+
+                    <div class="step-note">
+                        <strong>dtbo.img</strong>
+                        <span>Provides device-tree configuration for the phone hardware.</span>
+                    </div>
+
+                    <div class="step-note">
+                        <strong>Extra images</strong>
+                        <span>
+                            If your package contains more images (for example
+                            <code>recovery.img</code>), flash them the same way:
+                            <code>fastboot flash recovery recovery.img</code>.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="warning-box mt-6">
+                    <strong>Do not interrupt a flash.</strong>
+                    <p class="mt-1">
+                        Keep the USB cable connected until every image has finished flashing.
+                        Disconnecting mid-write can leave the boot partitions incomplete.
+                    </p>
+                </div>
+
+                <div class="note-box mt-6">
+                    <strong>Only flash the current slot.</strong>
+                    <p class="mt-1">
+                        Do not manually flash <code>boot_a</code>, <code>boot_b</code>,
+                        <code>vendor_boot_a</code> and <code>vendor_boot_b</code>.
+                        The ROM installation process handles the inactive slot as required.
+                    </p>
+                </div>
+
+                <div class="note-box mt-6">
+                    <strong>Why flash images individually?</strong>
+                    <p class="mt-1">
+                        Flashing each image gives a clear success or failure message per
+                        partition, so you immediately know which step went wrong instead of
+                        reading a long combined log.
+                    </p>
+                </div>
+
+                <div class="note-box mt-6">
+                    <strong>Got the MIUI screen instead of VoltageOS recovery?</strong>
+                    <p class="mt-1">
+                        If the phone boots into MIUI recovery after rebooting from this step,
+                        stop here and follow the dedicated fix:
+                        <a href="#miui-overwrite" class="text-cyan-300 hover:text-cyan-200 underline font-semibold">
+                            MIUI recovery appears after Step 3 → open the fix
+                        </a>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Step 4 — Immediately reboot directly to recovery</h3>
+
+                <p>
+                    Without allowing the phone to boot into MIUI, run:
+                </p>
+
+                <pre class="command-block"><code>fastboot reboot recovery</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <p class="mt-4">
+                    The phone should boot into the VoltageOS recovery environment.
+                    This is the safest way to prevent MIUI from replacing the custom recovery.
+                </p>
+
+                <div class="warning-box mt-5">
+                    <strong>Do not choose normal system reboot.</strong>
+                    <p class="mt-1">
+                        If you let the phone boot normally into MIUI after flashing
+                        <code>boot.img</code>, Xiaomi's stock recovery protection may restore
+                        the MIUI recovery.
+                    </p>
+                </div>
+
+                <div class="tip-box mt-5">
+                    <strong>If <code>fastboot reboot recovery</code> is not accepted:</strong>
+                    <p class="mt-1">
+                        This command is only valid in fastbootd. Power off the phone and hold
+                        <strong>Volume Up + Power</strong> to enter recovery manually. The
+                        important part is <em>not</em> letting the phone boot into MIUI.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Step 5 — Format data in VoltageOS recovery</h3>
+
+                <ol class="number-list">
+                    <li>In VoltageOS recovery, select <strong>Factory Reset</strong>.</li>
+                    <li>Select <strong>Format Data/Factory Reset</strong>.</li>
+                    <li>Confirm the format operation.</li>
+                    <li>Return to the main recovery menu.</li>
+                </ol>
+
+                <div class="warning-box mt-5">
+                    <strong>This erases internal storage.</strong>
+                    <p class="mt-1">
+                        Make sure your backup is complete before confirming the format.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Step 6 — Sideload the main ROM ZIP</h3>
+                <ol class="number-list">
+                    <li>Select <strong>Apply Update</strong>.</li>
+                    <li>Select <strong>Apply Update from ADB</strong>.</li>
+                    <li>Connect the phone to the computer if it is not already connected.</li>
+                    <li>Run the command using the main ROM ZIP.</li>
+                </ol>
+
+                <pre class="command-block"><code>adb sideload voltageos-rom.zip</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <div class="note-box mt-5">
+                    <strong>Use the main ROM ZIP.</strong>
+                    <p class="mt-1">
+                        Do not sideload the file containing <code>initial-install</code> during
+                        this step. Use the normal ROM package, usually the one without
+                        <code>initial-install</code> in its filename.
+                    </p>
+                </div>
+
+                <div class="tip-box mt-5">
+                    <strong>Sideload progress may look unusual.</strong>
+                    <p class="mt-1">
+                        The terminal may appear to stop at a percentage below 100%.
+                        Wait until recovery and the terminal report that the operation is complete.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card mt-6">
+                <h3 class="card-title">Step 7 — Reboot into VoltageOS</h3>
+
+                <ol class="number-list">
+                    <li>Wait until the ROM installation has completely finished.</li>
+                    <li>Return to the recovery main menu if necessary.</li>
+                    <li>Select <strong>Reboot System Now</strong>.</li>
+                    <li>Wait patiently for the first boot.</li>
+                </ol>
+
+                <div class="note-box mt-5">
+                    <strong>First boot:</strong>
+                    <p class="mt-1">
+                        The first boot can take several minutes. Do not repeatedly force-restart
+                        the phone unless it has clearly been stuck for an unusually long time.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Firmware -->
+        <section id="firmware" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">6</span>
+                <div>
+                    <h2>Flash Firmware</h2>
+                    <p>Firmware provides low-level device components required by the ROM.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3 class="card-title">Download the correct regional firmware</h3>
+
+                <p>
+                    Download the latest firmware for your region from the available firmware
+                    source:
+                </p>
+
+                <a href="https://t.me/sweaterinsack/3/5"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="download-link">
+                    Open the firmware download source
+                </a>
+
+                <div class="warning-box mt-5">
+                    <strong>Region matters.</strong>
+                    <p class="mt-1">
+                        Use firmware appropriate for your device and region. If you are unsure,
+                        ask in the device support group before flashing.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-6">
+                <div class="info-card">
+                    <h3 class="card-title">Method 1 — ADB Sideload</h3>
+
+                    <ol class="number-list">
+                        <li>In recovery, select <strong>Apply Update</strong>.</li>
+                        <li>Select <strong>Apply Update from ADB</strong>.</li>
+                        <li>Connect the phone to the computer.</li>
+                        <li>Run the command below using your actual filename.</li>
+                    </ol>
+
+                    <pre class="command-block"><code>adb sideload firmware.zip</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                    <div class="note-box mt-5">
+                        <strong>Note:</strong>
+                        <p class="mt-1">
+                            The command must be run from the folder containing the firmware ZIP.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="card-title">Method 2 — SD Card or USB OTG</h3>
+
+                    <ol class="number-list">
+                        <li>Copy the firmware ZIP to an SD card or USB drive.</li>
+                        <li>Connect it using an appropriate adapter if needed.</li>
+                        <li>In recovery, select <strong>Apply Update</strong>.</li>
+                        <li>Select <strong>Choose from sdcard</strong> or the available storage option.</li>
+                        <li>Select the firmware ZIP.</li>
+                        <li>Confirm the installation if prompted.</li>
+                    </ol>
+
+                    <div class="tip-box mt-5">
+                        <strong>Tip:</strong>
+                        <p class="mt-1">
+                            SD card or OTG installation is useful when ADB drivers are not
+                            working correctly on your computer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-box mt-6">
+                <strong>ADB sideload progress can look unusual.</strong>
+                <p class="mt-1">
+                    It may appear to pause at a certain percentage or stop below 100%.
+                    Wait for the recovery and terminal to report completion before assuming
+                    that the installation failed.
+                </p>
+            </div>
+        </section>
+
+        <!-- ROM installation -->
+        <section id="rom" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">7</span>
+                <div>
+                    <h2>Install the ROM</h2>
+                    <p>Choose one installation option according to your preferred Google app setup.</p>
+                </div>
+            </div>
+
+            <div class="warning-box mb-6">
+                <strong>Clean flash warning:</strong>
+                <p class="mt-1">
+                    A clean flash formats user data. Make sure your backup is complete before
+                    continuing.
+                </p>
+            </div>
+
+            <!-- Vanilla -->
+            <div class="info-card mb-6">
+                <h3 class="text-xl font-bold text-white mb-2">
+                    Option 1 — Clean Flash: Vanilla
+                </h3>
+
+                <p class="mb-5">
+                    Choose this option if you want a ROM without Google applications installed.
+                </p>
+
+                <ol class="number-list">
+                    <li>
+                        In recovery, select <strong>Apply Update</strong> →
+                        <strong>Apply Update from ADB</strong>.
+                    </li>
+
+                    <li>
+                        On the computer, run the command below using the actual ROM filename:
+                    </li>
+                </ol>
+
+                <pre class="command-block"><code>adb sideload rom.zip</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <ol class="number-list" start="3">
+                    <li>Wait for the sideload to finish.</li>
+                    <li>If recovery asks whether to reboot to recovery, choose <strong>Yes</strong>.</li>
+                    <li>Select <strong>Factory Reset</strong>.</li>
+                    <li>Select <strong>Format Data/Factory Reset</strong>.</li>
+                    <li>Confirm the format operation.</li>
+                    <li>Select <strong>Reboot System Now</strong>.</li>
+                </ol>
+
+                <div class="note-box mt-6">
+                    <strong>First boot:</strong>
+                    <p class="mt-1">
+                        The first boot after a clean flash can take several minutes.
+                        Do not repeatedly force-restart the phone unless it has clearly been
+                        stuck for an unusually long time.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Sandbox GApps -->
+            <div class="info-card mb-6">
+                <h3 class="text-xl font-bold text-white mb-2">
+                    Option 2 — Clean Flash: Sandboxed Google Play
+                </h3>
+
+                <p class="mb-5">
+                    This option installs the ROM without traditional system-integrated GApps.
+                    Google components are installed as sandboxed applications after Android starts.
+                </p>
+
+                <ol class="number-list">
+                    <li>Follow steps 1–8 from the Vanilla clean flash method.</li>
+                    <li>Boot into Android.</li>
+                    <li>Open the GrapheneOS App Store download page.</li>
+                </ol>
+
+                <a href="https://github.com/GrapheneOS/Apps/releases"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="download-link">
+                    Download GrapheneOS Apps
+                </a>
+
+                <ol class="number-list" start="4">
+                    <li>Install the App Store application.</li>
+                    <li>Open it after installation.</li>
+                    <li>Install Google Play services.</li>
+                    <li>Install Google Services Framework.</li>
+                    <li>Install Google Play Store.</li>
+                </ol>
+
+                <div class="mt-6 flex flex-col md:flex-row gap-5 items-center bg-slate-700/40 p-4 rounded-lg">
+                    <img
+                        src="https://raw.githubusercontent.com/Karan-Frost/images/refs/heads/main/IMG_20241209_143433_631.jpg"
+                        alt="GrapheneOS App Store screenshot"
+                        class="rounded-md w-full md:w-64 border border-slate-600"
+                    >
+
+                    <div class="text-sm">
+                        <p class="mb-3">
+                            Read more about Sandboxed Google Play on the official documentation:
+                        </p>
+
+                        <a href="https://grapheneos.org/usage#sandboxed-google-play"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="text-cyan-400 hover:text-cyan-300 underline">
+                            Sandboxed Google Play documentation
+                        </a>
+
+                        <p class="mt-3">
+                            For possible fixes and workarounds, check the community post:
+                        </p>
+
+                        <a href="https://t.me/voltageos/122664"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="text-cyan-400 hover:text-cyan-300 underline">
+                            VoltageOS community post
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tip-box mt-6">
+                    <strong>Why use sandboxed Google Play?</strong>
+                    <p class="mt-1">
+                        Google services run as regular applications instead of being deeply
+                        integrated into the system. This may provide a different privacy and
+                        permission model than traditional GApps.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Normal GApps -->
+            <div class="info-card">
+                <h3 class="text-xl font-bold text-white mb-2">
+                    Option 3 — Clean Flash: Normal GApps
+                </h3>
+
+                <p class="mb-5">
+                    Choose this option if you want to install a compatible traditional GApps
+                    package during the ROM installation process.
+                </p>
+
+                <ol class="number-list">
+                    <li>
+                        In recovery, select <strong>Apply Update</strong> →
+                        <strong>Apply Update from ADB</strong>.
+                    </li>
+
+                    <li>Sideload the ROM ZIP:</li>
+                </ol>
+
+                <pre class="command-block"><code>adb sideload rom.zip</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <ol class="number-list" start="3">
+                    <li>Wait until the sideload has finished.</li>
+                    <li>Confirm <strong>Yes</strong> if recovery asks to reboot to recovery.</li>
+                    <li><strong>Do not reboot to system.</strong></li>
+                    <li>Return to <strong>Apply Update</strong> → <strong>Apply Update from ADB</strong>.</li>
+                    <li>Sideload your compatible GApps package:</li>
+                </ol>
+
+                <pre class="command-block"><code>adb sideload gapps.zip</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <ol class="number-list" start="8">
+                    <li>Wait for the GApps installation to finish.</li>
+                    <li>Select <strong>Advanced</strong> → <strong>Reboot to Recovery</strong>.</li>
+                    <li>After recovery restarts, select <strong>Factory Reset</strong>.</li>
+                    <li>Select <strong>Format Data/Factory Reset</strong>.</li>
+                    <li>Confirm the format.</li>
+                    <li>Select <strong>Reboot System Now</strong>.</li>
+                </ol>
+
+                <div class="warning-box mt-6">
+                    <strong>Use compatible GApps only.</strong>
+                    <p class="mt-1">
+                        GApps packages must match the Android version and device architecture
+                        supported by your ROM.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Updates -->
+        <section id="updates" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">8</span>
+                <div>
+                    <h2>Update an Existing Installation</h2>
+                    <p>Choose dirty flash or the built-in OTA updater.</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6">
+                <div class="info-card">
+                    <h3 class="text-xl font-bold text-white mb-4">
+                        Method 1 — Dirty Flash
+                    </h3>
+
+                    <p class="mb-5">
+                        A dirty flash updates the ROM while keeping your user data.
+                        Always keep a backup before updating.
+                    </p>
+
+                    <ol class="number-list">
+                        <li>Boot into recovery.</li>
+                        <li>Select <strong>Apply Update</strong> → <strong>Apply Update from ADB</strong>.</li>
+                        <li>Sideload the new ROM:</li>
+                    </ol>
+
+                    <pre class="command-block"><code>adb sideload rom.zip</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                    <ol class="number-list" start="4">
+                        <li>Wait for the process to complete.</li>
+                        <li>Confirm recovery reboot if prompted.</li>
+                    </ol>
+
+                    <div class="border-t border-slate-700 mt-6 pt-5">
+                        <p class="font-semibold text-yellow-300 mb-3">
+                            If you previously installed normal GApps:
+                        </p>
+
+                        <ol class="number-list">
+                            <li><strong>Do not reboot to system.</strong></li>
+                            <li>Choose <strong>Apply Update</strong> → <strong>Apply Update from ADB</strong>.</li>
+                            <li>Sideload the matching GApps package:</li>
+                        </ol>
+
+                        <pre class="command-block"><code>adb sideload gapps.zip</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                        <ol class="number-list" start="4">
+                            <li>Wait until it finishes.</li>
+                            <li>Select <strong>Reboot System Now</strong>.</li>
+                        </ol>
+                    </div>
+
+                    <div class="warning-box mt-6">
+                        <strong>Major Android upgrades may require a clean flash.</strong>
+                        <p class="mt-1">
+                            Follow the release instructions when moving between major versions,
+                            such as 4.x to 5.x.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="text-xl font-bold text-white mb-4">
+                        Method 2 — OTA Updater
+                    </h3>
+
+                    <div class="note-box mb-5">
+                        <strong>Important:</strong>
+                        <p class="mt-1">
+                            OTA updates may not work for major version upgrades.
+                            Check the release notes first.
+                        </p>
+                    </div>
+
+                    <ol class="number-list">
+                        <li>Open <strong>Settings</strong>.</li>
+                        <li>Open <strong>System</strong>.</li>
+                        <li>Open <strong>System update</strong> or <strong>Updater</strong>.</li>
+                        <li>Check for the latest build.</li>
+                        <li>Download the update.</li>
+                        <li>Tap <strong>Reboot</strong> when the updater asks.</li>
+                        <li>Allow the phone to complete the update automatically.</li>
+                    </ol>
+
+                    <div class="tip-box mt-6">
+                        <strong>GApps note:</strong>
+                        <p class="mt-1">
+                            When using the built-in OTA updater, you normally do not need to
+                            manually flash GApps again. Follow the specific release instructions
+                            if they say otherwise.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kernel -->
+        <section id="kernel" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">9</span>
+                <div>
+                    <h2>Flash a Different Kernel</h2>
+                    <p>This step is optional and should only be used when required.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="warning-box mb-6">
+                    <strong>Important:</strong>
+                    <p class="mt-1">
+                        This procedure is not required after VoltageOS 5.6 unless the kernel
+                        maintainer or ROM instructions specifically tell you to use it.
+                    </p>
+                </div>
+
+                <ol class="number-list">
+                    <li>
+                        Download the required <code>vendor_boot.img</code> from the kernel
+                        download source.
+                    </li>
+
+                    <li>
+                        Reboot the phone into bootloader fastboot mode using
+                        <strong>Volume Down + Power</strong>.
+                    </li>
+
+                    <li>Connect the phone to the computer.</li>
+
+                    <li>Confirm that it is detected:</li>
+                </ol>
+
+                <pre class="command-block"><code>fastboot devices</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <ol class="number-list" start="5">
+                    <li>Flash the downloaded vendor boot image.</li>
+                </ol>
+
+                <pre class="command-block"><code>fastboot flash vendor_boot voltage-5.6-kernel-flash-vendor_boot.img</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                <ol class="number-list" start="6">
+                    <li>Wait until the command completes successfully.</li>
+                    <li>Reboot to recovery using <strong>Volume Up + Power</strong>.</li>
+                    <li>Flash the desired kernel ZIP using ADB sideload or SD card/OTG.</li>
+                    <li>Select <strong>Reboot System Now</strong>.</li>
+                </ol>
+
+                <div class="warning-box mt-6">
+                    <strong>Kernel compatibility is important.</strong>
+                    <p class="mt-1">
+                        A kernel made for another Android version, device or ROM can cause
+                        boot loops, crashes or loss of hardware functionality.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- After installation -->
+        <section id="after-installation" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">10</span>
+                <div>
+                    <h2>After Installation</h2>
+                    <p>Complete these checks after Android starts.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3 class="card-title">First boot checklist</h3>
+
+                <ul class="check-list">
+                    <li>Allow several minutes for the first boot.</li>
+                    <li>Complete the Android setup process.</li>
+                    <li>Test the touchscreen, speakers and cameras.</li>
+                    <li>Test Wi-Fi, mobile data and Bluetooth.</li>
+                    <li>Check that the correct storage capacity is displayed.</li>
+                    <li>Check your SIM card and mobile network.</li>
+                    <li>Restore your personal files.</li>
+                    <li>Install updates only from trusted sources.</li>
+                    <li>Create a fresh backup after the phone is configured.</li>
+                </ul>
+
+                <div class="tip-box mt-6">
+                    <strong>Keep your files.</strong>
+                    <p class="mt-1">
+                        Store the working ROM, firmware, extracted images and recovery files
+                        safely. They may be useful for future recovery or reinstallation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section id="troubleshooting" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">11</span>
+                <div>
+                    <h2>Troubleshooting and Frequently Asked Questions</h2>
+                    <p>Common problems and how to identify them quickly.</p>
+                </div>
+            </div>
+
+            <div class="space-y-5">
+                <details class="faq-card" id="miui-overwrite">
+                    <summary>MIUI recovery appears after Step 3 instead of VoltageOS recovery</summary>
+                    <div class="faq-content">
+                        <p>
+                            If the phone shows the MIUI recovery screen after Step 3, the custom
+                            boot image was overwritten. On veux/peux, the recovery lives inside
+                            the <code>boot</code> partition, so MIUI detects the modified boot
+                            image and restores the stock MIUI recovery as soon as it is allowed
+                            to boot.
+                        </p>
+
+                        <div class="warning-box mt-4">
+                            <strong>Do not run <code>fastboot update</code> on the initial install ZIP.</strong>
+                            <p class="mt-1">
+                                The initial install ZIP is not a full ROM and does not contain
+                                <code>system.img</code>. Using <code>fastboot update</code> on it
+                                fails with <code>could not load 'system.img'</code>. It only
+                                contains the foundational images (<code>boot</code>,
+                                <code>vendor_boot</code>, <code>dtbo</code>) needed to bring up
+                                the custom recovery.
+                            </p>
+                        </div>
+
+                        <p class="mt-5 font-semibold text-white">
+                            Follow these steps in this exact order:
+                        </p>
+
+                        <ol class="number-list mt-3">
+                            <li>
+                                Boot into <strong>bootloader fastboot</strong> and flash the
+                                three images to the <strong>current active slot only</strong>:
+                            </li>
+                        </ol>
+
+                        <pre class="command-block"><code>fastboot flash boot boot.img
+fastboot flash vendor_boot vendor_boot.img
+fastboot flash dtbo dtbo.img</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                        <div class="note-box mt-4">
+                            <strong>Do not manually flash the <code>_a</code> and <code>_b</code> slots.</strong>
+                            <p class="mt-1">
+                                Do not manually flash <code>boot_a</code>, <code>boot_b</code>,
+                                <code>vendor_boot_a</code> and <code>vendor_boot_b</code>.
+                                Flashing the current active slot is all that is required. The
+                                ROM installation process handles the inactive slot on its own.
+                            </p>
+                        </div>
+
+                        <ol class="number-list mt-5" start="2">
+                            <li>
+                                Immediately reboot to recovery. Do <strong>not</strong> let the
+                                phone boot into MIUI:
+                            </li>
+                        </ol>
+
+                        <pre class="command-block"><code>fastboot reboot recovery</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                        <div class="tip-box mt-4">
+                            <strong>If that command is not accepted:</strong>
+                            <p class="mt-1">
+                                Power off and hold <strong>Volume Up + Power</strong> to enter
+                                recovery manually. The important part is not letting the phone
+                                boot into MIUI.
+                            </p>
+                        </div>
+
+                        <ol class="number-list mt-5" start="3">
+                            <li>
+                                In VoltageOS recovery, select <strong>Factory Reset</strong> →
+                                <strong>Format Data/Factory Reset</strong> and confirm.
+                            </li>
+
+                            <li>
+                                Go to <strong>Apply Update</strong> →
+                                <strong>Apply Update from ADB</strong>.
+                            </li>
+
+                            <li>
+                                Sideload the main ROM ZIP — the one <strong>without</strong>
+                                <code>initial-install</code> in its name:
+                            </li>
+                        </ol>
+
+                        <pre class="command-block"><code>adb sideload voltageos-rom.zip</code><button class="copy-btn" type="button">Copy</button></pre>
+
+                        <ol class="number-list mt-5" start="6">
+                            <li>Wait for the sideload to finish.</li>
+                            <li>Select <strong>Reboot System Now</strong>.</li>
+                        </ol>
+
+                        <div class="note-box mt-5">
+                            <strong>Why this works:</strong>
+                            <p class="mt-1">
+                                The initial install package only provides the foundational boot
+                                images. Entering recovery immediately prevents MIUI from
+                                overwriting them. Formatting data and sideloading the full ROM
+                                completes the installation.
+                            </p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary>The initial-install ZIP fails with “could not load system.img”</summary>
+                    <div class="faq-content">
+                        <p>
+                            This happens when the initial-install ZIP is used with
+                            <code>fastboot update</code>.
+                        </p>
+
+                        <p class="mt-3">
+                            The initial ZIP is not a complete ROM and does not contain
+                            <code>system.img</code>. Extract it and flash the three images manually:
+                        </p>
+
+                        <pre class="command-block"><code>fastboot flash boot boot.img
+fastboot flash vendor_boot vendor_boot.img
+fastboot flash dtbo dtbo.img
+fastboot reboot recovery</code><button class="copy-btn" type="button">Copy</button></pre>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary>“adb” or “fastboot” is not recognized</summary>
+                    <div class="faq-content">
+                        <p>
+                            The terminal is not currently inside the platform-tools folder, or
+                            platform-tools has not been installed correctly.
+                        </p>
+
+                        <ul class="check-list mt-3">
+                            <li>Open the terminal inside the platform-tools folder.</li>
+                            <li>On Windows, try <code>.\adb</code> or <code>.\fastboot</code>.</li>
+                            <li>Check that the executable files exist in the folder.</li>
+                            <li>Install or update platform-tools if necessary.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary><code>fastboot devices</code> shows nothing</summary>
+                    <div class="faq-content">
+                        <ul class="check-list">
+                            <li>Confirm the phone is actually in fastboot mode.</li>
+                            <li>Try another USB port.</li>
+                            <li>Try another data cable.</li>
+                            <li>Install the correct USB drivers on Windows.</li>
+                            <li>Restart the computer if the driver was just installed.</li>
+                            <li>Run the command again from the platform-tools folder.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary><code>fastboot: error: cannot load 'boot.img'</code></summary>
+                    <div class="faq-content">
+                        <p>
+                            Fastboot cannot find the image file you asked it to flash.
+                        </p>
+
+                        <ul class="check-list mt-3">
+                            <li>Make sure the initial install ZIP was extracted.</li>
+                            <li>Make sure the <code>.img</code> files are inside the folder you opened the terminal in.</li>
+                            <li>Check the exact filename with <code>dir</code> (Windows) or <code>ls</code> (Linux/macOS).</li>
+                            <li>Do not rename the images unless an instruction tells you to.</li>
+                            <li>If you are not in the correct folder, either move the images there or open a terminal in the folder that contains them.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary>ADB says “unauthorized”</summary>
+                    <div class="faq-content">
+                        <p>
+                            This normally happens when Android is running and has not approved
+                            the computer for USB debugging.
+                        </p>
+
+                        <ul class="check-list mt-3">
+                            <li>Unlock the phone screen.</li>
+                            <li>Accept the USB debugging authorization prompt.</li>
+                            <li>Enable USB debugging in Developer options if needed.</li>
+                            <li>Reconnect the cable and run <code>adb devices</code> again.</li>
+                        </ul>
+
+                        <p class="mt-3">
+                            ADB sideload mode inside recovery is different from normal Android
+                            USB debugging and may not display the same authorization prompt.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary>The sideload percentage appears stuck</summary>
+                    <div class="faq-content">
+                        <p>
+                            ADB sideload progress does not always behave like a normal progress
+                            bar. It may stop at a percentage while recovery continues processing.
+                        </p>
+
+                        <p class="mt-3">
+                            Wait for both the terminal and recovery to report completion. Do not
+                            disconnect the phone just because the percentage is not moving.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary>Recovery says the ZIP is invalid</summary>
+                    <div class="faq-content">
+                        <ul class="check-list">
+                            <li>Make sure the download completed successfully.</li>
+                            <li>Check that you selected the real flashable ZIP.</li>
+                            <li>Check whether the file is nested inside another archive.</li>
+                            <li>Confirm that the ZIP is made for veux/peux.</li>
+                            <li>Download the file again if it may be corrupted.</li>
+                            <li>Do not open and re-compress the ROM ZIP.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary>The phone boot loops after installation</summary>
+                    <div class="faq-content">
+                        <p>
+                            A boot loop means the phone repeatedly restarts or never reaches
+                            Android.
+                        </p>
+
+                        <ul class="check-list mt-3">
+                            <li>Wait several minutes during the first boot.</li>
+                            <li>Return to recovery using Volume Up + Power.</li>
+                            <li>Check whether the ROM installation completed successfully.</li>
+                            <li>Confirm that the firmware is compatible.</li>
+                            <li>Check whether a required GApps package was installed correctly.</li>
+                            <li>Perform the required factory reset if this was a clean installation.</li>
+                            <li>Review the ROM release instructions before trying again.</li>
+                        </ul>
+
+                        <div class="warning-box mt-4">
+                            <strong>Do not repeatedly flash random files.</strong>
+                            <p class="mt-1">
+                                If the problem continues, stop and ask for help with the exact
+                                device model, ROM version and error message.
+                            </p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary>I accidentally rebooted to the wrong mode</summary>
+                    <div class="faq-content">
+                        <p>
+                            This is usually recoverable. Power the phone off and use the
+                            appropriate button combination:
+                        </p>
+
+                        <ul class="check-list mt-3">
+                            <li><strong>Volume Down + Power:</strong> bootloader fastboot.</li>
+                            <li><strong>Volume Up + Power:</strong> recovery.</li>
+                        </ul>
+
+                        <p class="mt-3">
+                            If Android starts normally, shut it down again before retrying the
+                            required button combination.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary>Can I disconnect the phone during a flash?</summary>
+                    <div class="faq-content">
+                        <p>
+                            No. Keep the cable connected until the command and recovery both
+                            indicate that the operation is complete.
+                        </p>
+
+                        <p class="mt-3">
+                            Disconnecting during a partition or system update can leave the
+                            installation incomplete.
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Final checklist -->
+        <section id="final-checklist" class="guide-section">
+            <div class="section-heading">
+                <span class="section-number">12</span>
+                <div>
+                    <h2>Final Checklist</h2>
+                    <p>Use this checklist before considering the installation complete.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <ul class="check-list">
+                    <li>The phone is the correct veux/peux model.</li>
+                    <li>The bootloader is unlocked.</li>
+                    <li>Important data has been backed up.</li>
+                    <li>The battery is sufficiently charged.</li>
+                    <li>All images from the initial install package were flashed successfully.</li>
+                    <li>The phone was rebooted directly to recovery — not into MIUI.</li>
+                    <li>Data was formatted when required.</li>
+                    <li>The correct firmware was installed.</li>
+                    <li>The main ROM ZIP was sideloaded successfully.</li>
+                    <li>The correct GApps option was used, if needed.</li>
+                    <li>The phone boots successfully into VoltageOS / Android.</li>
+                    <li>Basic hardware and network functions work.</li>
+                    <li>A fresh backup has been created after setup.</li>
+                </ul>
+
+                <div class="tip-box mt-6">
+                    <strong>Keep your files.</strong>
+                    <p class="mt-1">
+                        Keep the working ROM, firmware, extracted images and recovery files in
+                        a safe folder. They may be useful if you need to recover or reinstall
+                        the system later.
+                    </p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 mt-12 border-t border-slate-800">
-        <div class="max-w-5xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-slate-400">
-            <p>Found a mistake or want to suggest improvements? Feel free to open a <a href="https://github.com/Karan-Frost/flashing-guide-veux/pulls" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold underline">Pull Request</a>!</p>
-            <p>For any queries, ask in the <a href="https://t.me/frosty_builds" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold underline">Support Group</a>.</p>
-            <p>&copy; 2025-2026 Frost</p>
+    <footer class="bg-slate-950 mt-12 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-slate-400">
+            <p>
+                Found a mistake or want to suggest improvements?
+                Open a
+                <a href="https://github.com/Karan-Frost/flashing-guide-veux/pulls"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="text-cyan-400 hover:text-cyan-300 underline">
+                    pull request
+                </a>.
+            </p>
+
+            <p class="mt-2">
+                For questions, ask in the
+                <a href="https://t.me/frosty_builds"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="text-cyan-400 hover:text-cyan-300 font-semibold underline">
+                    Support Group
+                </a>.
+            </p>
+
+            <p class="mt-4 text-sm">
+                &copy; 2025-2026 Frost
+            </p>
         </div>
     </footer>
 
